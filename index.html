@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영종 상황판</title>
+  <meta name="color-scheme" content="light">
+  <link rel="stylesheet" href="./assets/app.css">
+  <script defer src="./vendor/jszip.min.js"></script>
+  <script defer src="./assets/data/center-jurisdiction.geojson.js"></script>
+  <script defer src="./assets/app.bundle.js"></script>
+</head>
+<body>
+  <div class="map-app">
+    <div id="map"></div>
+
+    <div id="mapOverlayMessage" class="map-overlay-message">
+      최초 실행 시 지도 키를 입력한 뒤 표준 엑셀을 업로드해 주세요.
+    </div>
+
+    <div id="selectionHud" class="selection-hud is-hidden" aria-hidden="true">
+      <button id="clearSelectionBtn" class="selection-hud__close" type="button" aria-label="닫기">✕</button>
+      <div id="selectionSummary" class="selection-summary is-empty">
+        지도에서 기준지점 또는 위험물제조소등을 선택하면 요약 정보가 표시됩니다.
+      </div>
+    </div>
+
+    <div id="dockPopover" class="dock-popover is-hidden" aria-hidden="true">
+      <div class="dock-popover__header">
+        <h2 id="dockPopoverTitle">설정</h2>
+        <button id="popoverCloseBtn" class="text-button" type="button">닫기</button>
+      </div>
+      <div class="dock-popover__body">
+        <div id="toolsPanel" class="dock-panel">
+          <div class="tool-actions">
+            <label class="dock-button dock-button--primary tool-action" for="excelInput">데이터 업로드</label>
+            <a class="sheet-link tool-action" href="./templates/영종_상황판_표준시트_템플릿.xlsx">표준 템플릿</a>
+            <button id="openSettingsBtn" class="dock-button tool-action" type="button">지도 키 설정</button>
+          </div>
+          <p class="helper-text">설정 메뉴에서는 엑셀 업로드, 표준 템플릿 확인, 카카오 JavaScript 키 수정이 가능합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <nav id="bottomDock" class="bottom-dock" aria-label="기능 메뉴">
+      <button id="toolsBtn" class="dock-button dock-button--primary" type="button">설정</button>
+    </nav>
+    <input id="excelInput" type="file" accept=".xlsx,.xlsm,.xls" hidden>
+  </div>
+
+  <div id="keyModal" class="modal is-visible" aria-hidden="false">
+    <div class="modal__dialog">
+      <div class="modal__header">
+        <p class="card__eyebrow">Kakao Maps Setup</p>
+        <h2>카카오 JavaScript 키 입력</h2>
+      </div>
+      <p class="modal__summary">
+        최초 실행 시 키를 한 번 입력하면 로컬에 저장되고, 이후에는 자동으로 앱에 진입합니다. 저장되는 값은 지도 키만이며, 업로드한 업무 데이터는 저장하지 않습니다.
+      </p>
+      <label class="control-label" for="kakaoKeyInput">JavaScript 키</label>
+      <input id="kakaoKeyInput" class="control-input control-input--mono" type="text" autocomplete="off" placeholder="카카오 JavaScript 키 입력">
+      <div class="modal__actions">
+        <button id="removeKeyBtn" class="action-button action-button--ghost" type="button">저장 키 삭제</button>
+        <button id="saveKeyBtn" class="action-button action-button--primary" type="button">저장 후 시작</button>
+      </div>
+      <p id="keyModalHint" class="modal__hint">도메인 설정은 Kakao Developers에서 `file://` 또는 허용 출처 조건에 맞게 등록되어 있어야 합니다.</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
