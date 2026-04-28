@@ -61,7 +61,9 @@
 - 모바일은 보조 조회용입니다.
 - 카카오 JavaScript 키는 사용자 브라우저별로 저장되므로, 다른 PC나 다른 브라우저에서는 다시 입력해야 합니다.
 
-9. Windows 배포 절차
-- yeongjong_dashboard_app_v2 폴더 전체를 ZIP으로 압축해 전달합니다.
-- 받은 사용자는 압축을 풀고 index.html을 실행합니다.
-- 첫 실행 때만 카카오 JavaScript 키를 입력하면 됩니다.
+9. 배포 트랙 (이 폴더는 GitHub용 소스)
+- 본 폴더는 GitHub Pages 자동 배포의 소스 디렉터리입니다.
+- 코드 수정 → GitHub Desktop으로 commit + push → 1~2분 후 GitHub Pages가 자동 갱신.
+- 사용자에게는 GitHub Pages URL(예: https://USERNAME.github.io/yeongjong-dashboard/)만 즐겨찾기 안내.
+- ZIP 로컬 배포가 필요한 경우 yeongjong-dashboard_ZIP배포용 폴더를 ZIP 압축해 전달.
+- 두 트랙 모두 같은 카카오 JavaScript 키 사용 가능 (카카오 콘솔에 GitHub Pages 도메인 등록 필수).
